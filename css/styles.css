@@ -1,0 +1,142 @@
+:root {
+    --board-size: min(90vmin, 720px);
+    --square-size: calc(var(--board-size) / 8);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 1rem;
+}
+
+/* Responsive container */
+.board-container {
+    width: var(--board-size);
+    height: var(--board-size);
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    transition: transform 0.3s ease;
+}
+
+/* Add hover effect to the board */
+.board-container:hover {
+    transform: scale(1.02);
+}
+
+.square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.5rem, calc(var(--square-size) * 0.5), 4rem);
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+    transition: all 0.2s ease;
+}
+
+/* Square hover effects */
+.square:hover {
+    transform: scale(0.95);
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+/* Piece hover animation */
+.square:hover>* {
+    transform: scale(1.1);
+}
+
+.move-indicator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 35%;
+    height: 35%;
+    background-color: rgba(59, 130, 246, 0.5);
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+.move-indicator:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Media queries for different screen sizes */
+@media (max-width: 640px) {
+    :root {
+        --board-size: 95vmin;
+    }
+
+    body {
+        padding: 0.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .board-container:hover {
+        transform: scale(1.05);
+    }
+}
+
+/* Game status animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#status-text {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Control button scaling */
+#new-game-button {
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#new-game-button:hover {
+    transform: scale(1.1);
+}
+
+/* Move history styles */
+#move-list {
+    font-family: 'Monaco', 'Consolas', monospace;
+    font-size: 0.9rem;
+}
+
+.move-entry {
+    display: flex;
+    padding: 0.25rem 0.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease;
+}
+
+.move-entry:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.move-number {
+    color: #666;
+    width: 2.5rem;
+    flex-shrink: 0;
+}
+
+.move-notation {
+    flex-grow: 1;
+}
+
+.move-entry.latest {
+    background-color: rgba(245, 158, 11, 0.1);
+    font-weight: bold;
+}

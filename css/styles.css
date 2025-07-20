@@ -109,6 +109,35 @@ body {
     transform: scale(1.1);
 }
 
+/* Game Over Screen Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#game-over-screen .bg-white {
+    animation: slideIn 0.5s ease-out;
+}
+
+#winner-text {
+    background: linear-gradient(45deg, #f59e0b, #d97706);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#game-over-screen.show {
+    display: flex !important;
+}
+
 /* Move history styles */
 #move-list {
     font-family: 'Monaco', 'Consolas', monospace;

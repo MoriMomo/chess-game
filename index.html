@@ -16,7 +16,19 @@
             <p class="text-stone-600 mt-1">A simple, clean, and interactive chess game. Click on a piece to see its
                 available moves.</p>
         </header>
-        <main class="flex flex-col md:flex-row items-start justify-center w-full gap-8">
+        <main class="flex flex-col md:flex-row items-start justify-center w-full gap-8 relative">
+            <!-- Game Over Screen -->
+            <div id="game-over-screen"
+                class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+                <div class="bg-white rounded-lg p-8 max-w-md text-center transform transition-all">
+                    <h2 id="winner-text" class="text-3xl font-bold mb-4"></h2>
+                    <p id="game-result-details" class="text-xl text-gray-600 mb-6"></p>
+                    <button onclick="game.startNewGame()"
+                        class="px-6 py-3 bg-amber-600 text-white font-bold rounded-lg shadow-md hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50 transition-all duration-300 ease-in-out transform hover:scale-105">
+                        Play Again
+                    </button>
+                </div>
+            </div>
             <div class="flex flex-col items-center">
                 <div id="board-container"
                     class="board-container shadow-2xl rounded-lg overflow-hidden border-4 border-stone-300">
